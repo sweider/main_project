@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
- before_filter :auth_user, :only => [:index, :new, :create, :delete]
+ before_filter :auth_user, :only => [:index, :new, :create, :delete, :edit]
   def index
        
     @users = User.all
@@ -15,7 +15,10 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @description_arr = @user.description.split(' ')
+    if @user.description
+      @description_arr = @user.description.split(' ')
+    end
+    @string = "The most important member of our family!"
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }

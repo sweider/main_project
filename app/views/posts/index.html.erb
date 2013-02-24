@@ -10,7 +10,7 @@
           <div class="thumbnail" style="background:#fff; margin-bottom:20px;">
             <a href= <%= post_path(post)%>><img src=<%=post.image_url(:thumb)%>  class="img-rounded"></a>
             <!--<%= link_to image_tag(post.image_url(:thumb)), post, :class => 'img-rounded' %>-->
-            <h4 align="center" style="margin-bottom:0px;fff;"><%= post.author %></h4>
+            <h4 align="center" style="margin-bottom:0px; color:#333;"><%= post.author %></h4>
           <!--  <p><%= post.congratulation %></p> -->
           <div class="button-group " align="right">
             <%= link_to "",edit_post_path(post), :class => 'icon icon-pencil' %>
