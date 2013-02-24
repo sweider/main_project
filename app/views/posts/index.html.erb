@@ -1,0 +1,30 @@
+<%- model_class = Post -%>
+
+<div class="page-header" style="color:#fff;">
+   <h1>Our Heroe's Congratulations! =)</h1>
+</div>
+<ul class="thumbnails">
+ <% @posts.each do |post| %>
+      <center>
+        <li class="span4 ">
+          <div class="thumbnail" style="background:#fff; margin-bottom:20px;">
+            <a href= <%= post_path(post)%>><img src=<%=post.image_url(:thumb)%>  class="img-rounded"></a>
+            <!--<%= link_to image_tag(post.image_url(:thumb)), post, :class => 'img-rounded' %>-->
+            <h4 align="center" style="margin-bottom:0px;fff;"><%= post.author %></h4>
+          <!--  <p><%= post.congratulation %></p> -->
+          <div class="button-group " align="right">
+            <%= link_to "",edit_post_path(post), :class => 'icon icon-pencil' %>
+            <%= link_to "", post_path(post),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'icon icon-remove'%>
+          </div>
+          </div>
+        </li> 
+       </center>     
+  <% end %>
+</ul>
+
+
+
+<a class="btn btn-primary" href=<%=new_post_path%> style="color:#fff;"><i class="icon-edit icon-white" style="margin-right:5px;"></i> New</a>

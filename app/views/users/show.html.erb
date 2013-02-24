@@ -1,0 +1,59 @@
+<%- model_class = User -%>
+<!--<div class="page-header">
+  <h1 style="color:#fff;">User profile</h1>
+</div>-->
+<div class="row" style="margin-left:20px; margin-top:30px;">
+<li class="span4">
+  <div class="thumbnails" style="margin-top:-20px; margin-bottom:30px">
+    <div class = "thumbnail">
+      <%= image_tag(@user.image_url(:thumb))%>
+    </div>
+  </div>
+</li>
+<div class = "span4" style="color:#fff;">
+  <h4><dt><%= model_class.human_attribute_name(:name) %>:</dt></h4>
+  <dd><h5>   <%= @user.name %></h5></dd>
+  <h4><strong><%= model_class.human_attribute_name(:age) %>:</strong></h4>
+  <h5><dd><%= @user.age %></dd></h5>
+  <h4><dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt></h4>
+  <h5><dd><%= @user.status %></dd></h5>
+  <h4><dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt></h4>
+  <h5><dd><%= @user.email %></dd></h5>
+  <h4><dt><strong><%= model_class.human_attribute_name(:current_session) %>:</strong></dt></h4>
+  <h5><dd><%= @user.current_sign_in_at %></dd></h5>
+  <h4><dt><strong><%= model_class.human_attribute_name(:last_session) %>:</strong></dt></h4>
+  <h5><dd><%= @user.last_sign_in_at %></dd></h5>
+  <h4><dt><strong><%= model_class.human_attribute_name(:current_ip) %>:</strong></dt></h4>
+  <h5><dd><%= @user.current_sign_in_ip %></dd></h5>
+  
+ 
+  <dt><h4 style=" margin-bottom:10px;">Description:</h4></dt>
+       
+       <ul class="thumbnails" style="margin-left:7px;"> <% for i in 0..(@description_arr.size-8) do %>
+          <li class="thumbnail" style="background:#fff; margin-bottom:10px;" style="margin-left: 10px">
+            <h5 style="padding:0px; margin:0px;color:#444"><%= @description_arr[i] %></h5>
+          </li>
+        <% end %>
+         <br/>
+          <li class="thumbnail" style="background:#fff;" style="margin-left: 20px">
+            <% a = "" %>
+          <% for i in (@description_arr.size-7)..(@description_arr.size-1) do %> 
+          <% a = a + @description_arr[i] + " " %> 
+          <%end %>
+            <h5 style="padding:0px; margin:0px; color:#444;"> <%= a %></h5>
+          </li> 
+        </ul>
+    </div><!--</li>-->
+  </div>
+
+
+  <a href=<%=users_path%> class="btn btn-primary"><i class="icon-arrow-left icon-white"></i> Back</a>
+ <% if current_user.role == "admin" %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_user_path(@user), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              user_path(@user),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+<% end %>

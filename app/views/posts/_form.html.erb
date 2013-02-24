@@ -1,0 +1,40 @@
+<%= form_for @post, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :author, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :author, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :congratulation, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :congratulation, :class => 'text_area' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :for_whom, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :for_whom, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :image, :class => 'control-label' %>
+    <div class="controls">
+      <%= image_tag(@post.image_url) if @post.image? %>
+      <%= f.file_field :image, :class => 'file_field' %>
+      <%= f.hidden_field :image_cache %>
+    </div>
+  </div>
+   <div class="controls">
+    <label>
+      Remove avatar
+      <%= f.check_box :remove_image %>      
+    </label>
+  </div>
+ 
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                posts_path, :class => 'btn' %>
+  </div>
+<% end %>
