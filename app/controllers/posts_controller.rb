@@ -17,9 +17,13 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @post }
+    if @post != nil 
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @notice }
+      end
+    else
+      redirect_to root_path, alert: "Wrong id or id doesn't exist! Operation denied!"  
     end
   end
 

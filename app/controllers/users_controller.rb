@@ -15,13 +15,17 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    if @user.description
-      @description_arr = @user.description.split(' ')
-    end
-    @string = "The most important member of our family!"
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
+    if @user != nil
+      if @user.description
+        @description_arr = @user.description.split(' ')
+      end
+      @string = "The most important member of our family!"
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @user }
+      end
+    else
+      redirect_to root_path, alert: "Wrong id or id doesn't exist! Operation denied!"  
     end
   end
 

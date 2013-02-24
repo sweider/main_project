@@ -1,6 +1,8 @@
 class NoticesController < ApplicationController
   # GET /notices
   # GET /notices.json
+  
+ before_filter :auth_user, :only => [:index, :new, :create, :delete, :edit]
   def index
     @notices = Notice.all
 
@@ -13,11 +15,15 @@ class NoticesController < ApplicationController
   # GET /notices/1
   # GET /notices/1.json
   def show
-    @notice = Notice.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @notice }
+    @notice = Notice.find(params[:id])
+    if @notice != nil 
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @notice }
+      end
+    else
+      redirect_to root_path, alert: "Wrong id or id doesn't exist! Operation denied!"  
     end
   end
 
