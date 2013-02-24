@@ -7,7 +7,7 @@ gem 'rails', '3.2.8'
 
 gem 'sqlite3', :group => :development
 group :production do    
-    gem 'pg', '0.12.2'  
+    gem 'pg'  
 end  
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
